@@ -82,40 +82,30 @@
 
         <section class="coach-panel">
           <div class="movement-panel">
-            <div class="animation-stage" id="animationStage" aria-label="Animation de l'exercice">
-              <div class="figure">
-                <div class="body-root">
-                  <span class="head"></span>
-                  <span class="torso"></span>
-                  <div class="limb arm arm-left">
-                    <span class="upper-arm"></span>
-                    <span class="joint elbow"></span>
-                    <span class="forearm"></span>
-                    <span class="hand"></span>
-                  </div>
-                  <div class="limb arm arm-right">
-                    <span class="upper-arm"></span>
-                    <span class="joint elbow"></span>
-                    <span class="forearm"></span>
-                    <span class="hand"></span>
-                  </div>
-                  <div class="limb leg leg-left">
-                    <span class="thigh"></span>
-                    <span class="joint knee"></span>
-                    <span class="shin"></span>
-                    <span class="foot"></span>
-                  </div>
-                  <div class="limb leg leg-right">
-                    <span class="thigh"></span>
-                    <span class="joint knee"></span>
-                    <span class="shin"></span>
-                    <span class="foot"></span>
-                  </div>
-                </div>
-                <span class="mat-line"></span>
+            <article class="exercise-guide" id="exerciseGuide">
+              <div class="guide-main">
+                <span class="guide-label">À faire maintenant</span>
+                <p class="cue" id="cueText">Installe-toi. On commence dans quelques secondes.</p>
               </div>
-            </div>
-            <p class="cue" id="cueText">Installe-toi. On commence dans quelques secondes.</p>
+              <div class="guide-grid">
+                <section class="guide-card">
+                  <span>Position</span>
+                  <p id="setupText">Mets-toi dans une position confortable et garde une respiration calme.</p>
+                </section>
+                <section class="guide-card">
+                  <span>Mouvement</span>
+                  <p id="movementText">Suis la consigne lentement, sans chercher à aller vite.</p>
+                </section>
+                <section class="guide-card">
+                  <span>Respiration</span>
+                  <p id="breathText">Respire régulièrement, sans bloquer l’air.</p>
+                </section>
+                <section class="guide-card">
+                  <span>Attention</span>
+                  <p id="watchText">Reste dans une amplitude confortable. Si une douleur apparaît, adapte.</p>
+                </section>
+              </div>
+            </article>
           </div>
 
           <div class="timer-block">

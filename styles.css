@@ -285,275 +285,48 @@ h2 {
   min-width: 0;
 }
 
-.animation-stage {
+.exercise-guide {
   min-height: 340px;
+  padding: 22px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #f7f7f5;
+  background: rgba(255, 255, 255, 0.66);
   box-shadow: var(--shadow);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
 }
 
-.figure {
-  position: relative;
-  width: 240px;
-  height: 270px;
+.guide-main {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
 }
 
-.body-root {
-  position: absolute;
-  width: 240px;
-  height: 260px;
-  left: 0;
-  top: 0;
-  transform-origin: 120px 116px;
-}
-
-.figure span,
-.limb {
-  position: absolute;
+.guide-label,
+.guide-card span {
   display: block;
+  color: var(--mode);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
-.figure span {
-  border-radius: 999px;
-  background: var(--night);
-  transform-origin: center top;
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 18px;
 }
 
-.head {
-  width: 42px;
-  height: 42px;
-  top: 8px;
-  left: 99px;
-  background: var(--leaf) !important;
+.guide-card {
+  min-height: 132px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(247, 244, 238, 0.62);
 }
 
-.torso {
-  width: 18px;
-  height: 86px;
-  top: 56px;
-  left: 111px;
-}
-
-.limb {
-  transform-origin: center top;
-}
-
-.arm {
-  width: 34px;
-  height: 108px;
-}
-
-.arm-left {
-  top: 62px;
-  left: 86px;
-  transform: rotate(28deg);
-}
-
-.arm-right {
-  top: 62px;
-  left: 120px;
-  transform: rotate(-28deg);
-}
-
-.upper-arm {
-  top: 0;
-  left: 10px;
-  width: 14px;
-  height: 52px;
-}
-
-.joint {
-  width: 20px;
-  height: 20px;
-  left: 7px;
-  background: var(--leaf) !important;
-}
-
-.elbow {
-  top: 45px;
-}
-
-.forearm {
-  top: 56px;
-  left: 10px;
-  width: 14px;
-  height: 54px;
-  transform-origin: center top;
-}
-
-.hand {
-  width: 24px;
-  height: 12px;
-  top: 104px;
-  left: 5px;
-  background: var(--clay) !important;
-  transform-origin: center center;
-}
-
-.arm-left .forearm {
-  transform: rotate(18deg);
-}
-
-.arm-right .forearm {
-  transform: rotate(-18deg);
-}
-
-.leg {
-  width: 42px;
-  height: 128px;
-}
-
-.leg-left {
-  top: 136px;
-  left: 90px;
-  transform: rotate(10deg);
-}
-
-.leg-right {
-  top: 136px;
-  left: 118px;
-  transform: rotate(-10deg);
-}
-
-.thigh {
-  top: 0;
-  left: 13px;
-  width: 16px;
-  height: 62px;
-}
-
-.knee {
-  top: 55px;
-  left: 11px;
-}
-
-.shin {
-  top: 66px;
-  left: 13px;
-  width: 16px;
-  height: 66px;
-  transform-origin: center top;
-}
-
-.foot {
-  width: 30px;
-  height: 12px;
-  top: 126px;
-  left: 4px;
-  background: var(--clay) !important;
-  transform-origin: center center;
-}
-
-.mat-line {
-  width: 196px;
-  height: 12px;
-  left: 22px;
-  bottom: -8px;
-  background: rgba(94, 125, 99, 0.18) !important;
-}
-
-.animation-stage.breathe .body-root {
-  animation: breathe 2.8s ease-in-out infinite;
-}
-
-.animation-stage.shoulders .arm-left {
-  animation: shoulderLeft 1.8s ease-in-out infinite;
-}
-
-.animation-stage.shoulders .arm-right {
-  animation: shoulderRight 1.8s ease-in-out infinite;
-}
-
-.animation-stage.catcow .body-root,
-.animation-stage.birddog .body-root {
-  animation: quadrupedPose 0.1s linear forwards;
-}
-
-.animation-stage.catcow .torso {
-  animation: catCowSpine 1.8s ease-in-out infinite;
-}
-
-.animation-stage.core .body-root,
-.animation-stage.swimmer .body-root {
-  animation: floorPose 0.1s linear forwards;
-}
-
-.animation-stage.hips .leg-right,
-.animation-stage.mobility .leg-right {
-  animation: hipOpenLeg 1.9s ease-in-out infinite;
-}
-
-.animation-stage.hips .leg-right .shin,
-.animation-stage.mobility .leg-right .shin {
-  animation: hipOpenShin 1.9s ease-in-out infinite;
-}
-
-.animation-stage.march .arm-left,
-.animation-stage.march .leg-right {
-  animation: marchForward 1s ease-in-out infinite;
-}
-
-.animation-stage.march .arm-right,
-.animation-stage.march .leg-left {
-  animation: marchBack 1s ease-in-out infinite;
-}
-
-.animation-stage.squat .torso,
-.animation-stage.squat .head,
-.animation-stage.squat .arm {
-  animation: squatDrop 1.55s ease-in-out infinite;
-}
-
-.animation-stage.squat .leg-left {
-  animation: squatLegLeft 1.55s ease-in-out infinite;
-}
-
-.animation-stage.squat .leg-right {
-  animation: squatLegRight 1.55s ease-in-out infinite;
-}
-
-.animation-stage.squat .leg-left .shin {
-  animation: squatShinLeft 1.55s ease-in-out infinite;
-}
-
-.animation-stage.squat .leg-right .shin {
-  animation: squatShinRight 1.55s ease-in-out infinite;
-}
-
-.animation-stage.pushup .body-root {
-  animation: pushupPose 1.5s ease-in-out infinite;
-}
-
-.animation-stage.pushup .forearm {
-  animation: pushupElbow 1.5s ease-in-out infinite;
-}
-
-.animation-stage.bridge .body-root {
-  animation: bridgePose 1.7s ease-in-out infinite;
-}
-
-.animation-stage.birddog .arm-left,
-.animation-stage.birddog .leg-right {
-  animation: reachLong 1.8s ease-in-out infinite;
-}
-
-.animation-stage.birddog .arm-left .forearm,
-.animation-stage.birddog .leg-right .shin {
-  animation: straightenJoint 1.8s ease-in-out infinite;
-}
-
-.animation-stage.core .arm-left,
-.animation-stage.core .leg-right {
-  animation: deadBugReach 1.8s ease-in-out infinite;
-}
-
-.animation-stage.swimmer .arm,
-.animation-stage.swimmer .leg {
-  animation: swimmerLift 1.4s ease-in-out infinite;
+.guide-card p {
+  margin: 8px 0 0;
+  color: var(--ink);
+  line-height: 1.45;
 }
 
 .timer-block {
@@ -735,7 +508,7 @@ h2 {
     justify-self: start;
   }
 
-  .animation-stage,
+  .exercise-guide,
   .timer-block {
     min-height: 260px;
   }
@@ -748,159 +521,7 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .figure {
-    transform: scale(0.82);
+  .guide-grid {
+    grid-template-columns: 1fr;
   }
-}
-
-@keyframes breathe {
-  50% { transform: scale(1.06); }
-}
-
-@keyframes shoulderLeft {
-  50% { transform: rotate(118deg) translateY(-12px); }
-}
-
-@keyframes shoulderRight {
-  50% { transform: rotate(-118deg) translateY(-12px); }
-}
-
-@keyframes floorRotate {
-  to { transform: rotate(88deg) translate(18px, 4px); }
-}
-
-@keyframes floorPose {
-  to { transform: rotate(88deg) translate(18px, 4px); }
-}
-
-@keyframes quadrupedPose {
-  to { transform: translate(0, 0); }
-}
-
-.animation-stage.catcow .head,
-.animation-stage.birddog .head {
-  top: 90px;
-  left: 166px;
-}
-
-.animation-stage.catcow .torso,
-.animation-stage.birddog .torso {
-  top: 112px;
-  left: 86px;
-  height: 96px;
-  transform: rotate(90deg);
-}
-
-.animation-stage.catcow .arm-left,
-.animation-stage.birddog .arm-left {
-  top: 124px;
-  left: 148px;
-  transform: rotate(8deg);
-}
-
-.animation-stage.catcow .arm-right,
-.animation-stage.birddog .arm-right {
-  top: 128px;
-  left: 174px;
-  transform: rotate(6deg);
-}
-
-.animation-stage.catcow .arm .forearm,
-.animation-stage.birddog .arm .forearm {
-  transform: rotate(0deg);
-}
-
-.animation-stage.catcow .leg-left,
-.animation-stage.birddog .leg-left {
-  top: 126px;
-  left: 58px;
-  transform: rotate(-6deg);
-}
-
-.animation-stage.catcow .leg-right,
-.animation-stage.birddog .leg-right {
-  top: 128px;
-  left: 86px;
-  transform: rotate(-4deg);
-}
-
-.animation-stage.catcow .leg .shin,
-.animation-stage.birddog .leg .shin {
-  transform: rotate(80deg);
-}
-
-.animation-stage.catcow .leg .foot,
-.animation-stage.birddog .leg .foot {
-  transform: rotate(84deg);
-}
-
-@keyframes catCowSpine {
-  0%, 100% { transform: rotate(90deg) scaleY(1); }
-  50% { transform: rotate(90deg) translateY(10px) scaleY(0.82); }
-}
-
-@keyframes hipOpenLeg {
-  50% { transform: rotate(-58deg) translate(8px, -16px); }
-}
-
-@keyframes hipOpenShin {
-  50% { transform: rotate(34deg); }
-}
-
-@keyframes marchForward {
-  50% { transform: rotate(-34deg) translateY(-16px); }
-}
-
-@keyframes marchBack {
-  50% { transform: rotate(28deg) translateY(12px); }
-}
-
-@keyframes squatDrop {
-  50% { transform: translateY(42px); }
-}
-
-@keyframes squatLegLeft {
-  50% { transform: rotate(66deg) translate(8px, 14px); }
-}
-
-@keyframes squatLegRight {
-  50% { transform: rotate(-66deg) translate(-8px, 14px); }
-}
-
-@keyframes squatShinLeft {
-  50% { transform: rotate(-72deg); }
-}
-
-@keyframes squatShinRight {
-  50% { transform: rotate(72deg); }
-}
-
-@keyframes pushupPose {
-  0%, 100% { transform: rotate(84deg) translate(12px, 8px); }
-  50% { transform: rotate(84deg) translate(12px, 36px); }
-}
-
-@keyframes pushupElbow {
-  50% { transform: rotate(70deg) translateY(4px); }
-}
-
-@keyframes bridgePose {
-  0%, 100% { transform: rotate(88deg) translate(16px, 26px); }
-  50% { transform: rotate(88deg) translate(16px, -8px); }
-}
-
-@keyframes reachLong {
-  50% { transform: rotate(86deg) translate(22px, -52px); }
-}
-
-@keyframes straightenJoint {
-  50% { transform: rotate(0deg); }
-}
-
-@keyframes deadBugReach {
-  50% { transform: rotate(-52deg) translateY(-22px); }
-}
-
-@keyframes swimmerLift {
-  50% { transform: rotate(44deg) translateY(-14px); }
 }

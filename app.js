@@ -172,6 +172,99 @@ const encouragements = [
   'Encore un peu, sans forcer.',
 ];
 
+const exerciseGuides = {
+  'Respiration debout': {
+    setup: 'Debout, pieds bien posés au sol. Relâche les épaules et garde le regard devant toi.',
+    movement: 'Pose les mains sur les côtes ou le ventre. Sens le corps se gonfler doucement à l’inspiration, puis se relâcher à l’expiration.',
+    breath: 'Inspire par le nez, expire lentement par la bouche. Cherche une expiration plus longue que l’inspiration.',
+    watch: 'Ne force pas la poitrine. Si tu te sens étourdi, respire normalement et ralentis.',
+  },
+  'Cercles d’épaules': {
+    setup: 'Debout ou assis, dos long, bras relâchés le long du corps.',
+    movement: 'Monte les épaules vers les oreilles, recule-les, descends-les, puis ramène-les vers l’avant. Change de sens à mi-parcours.',
+    breath: 'Respire naturellement. Essaie de relâcher un peu plus à chaque expiration.',
+    watch: 'Le cou reste détendu. Le mouvement vient des épaules, pas de la tête.',
+  },
+  'Cat-cow doux': {
+    setup: 'À quatre pattes, mains sous les épaules, genoux sous les hanches. Répartis le poids entre mains et genoux.',
+    movement: 'Arrondis doucement le dos, puis creuse légèrement. Le mouvement doit être lent et confortable.',
+    breath: 'Expire quand tu arrondis le dos. Inspire quand tu reviens et creuses légèrement.',
+    watch: 'Ne cherche pas une grande amplitude. Si les poignets gênent, pose les avant-bras ou fais plus petit.',
+  },
+  'Ouverture de hanches': {
+    setup: 'Debout, près d’un mur ou d’une chaise si tu veux garder l’équilibre.',
+    movement: 'Monte un genou devant toi, ouvre la hanche vers le côté, puis repose le pied. Alterne les jambes.',
+    breath: 'Respire régulièrement. Expire quand tu ouvres la hanche.',
+    watch: 'Le bassin reste stable. Monte moins haut si le genou ou la hanche tire.',
+  },
+  'Marche active': {
+    setup: 'Debout, dos long, bras souples. Garde les pieds dans une zone confortable.',
+    movement: 'Marche sur place en levant légèrement les genoux. Les bras accompagnent naturellement.',
+    breath: 'Respire sans forcer. Tu dois pouvoir parler pendant le mouvement.',
+    watch: 'Aucun impact nécessaire. Si les genoux sont sensibles, lève moins les jambes.',
+  },
+  'Squat contrôlé': {
+    setup: 'Debout, pieds largeur épaules, pointes légèrement ouvertes. Imagine une chaise derrière toi.',
+    movement: 'Recule les fesses comme pour t’asseoir, plie les genoux, puis pousse dans les pieds pour remonter.',
+    breath: 'Inspire en descendant. Expire doucement en remontant.',
+    watch: 'Les talons restent au sol. Les genoux suivent la direction des pieds. Descends moins bas si ça gêne.',
+  },
+  'Pompes adaptées': {
+    setup: 'Choisis une hauteur stable : mur, table solide, canapé stable ou sol. Mains un peu plus larges que les épaules.',
+    movement: 'Plie les coudes pour approcher la poitrine du support, puis repousse lentement.',
+    breath: 'Inspire en descendant. Expire en repoussant.',
+    watch: 'Garde le ventre légèrement serré. Si les épaules montent vers les oreilles, choisis une version plus facile.',
+  },
+  'Pont fessier': {
+    setup: 'Allongé sur le dos, genoux pliés, pieds au sol largeur bassin. Bras posés au sol.',
+    movement: 'Pousse dans les talons pour lever le bassin, puis redescends doucement vertèbre par vertèbre.',
+    breath: 'Expire en montant. Inspire en redescendant.',
+    watch: 'Ne cambre pas exagérément. Si tu sens surtout le bas du dos, monte moins haut.',
+  },
+  'Bird-dog': {
+    setup: 'À quatre pattes, mains sous les épaules, genoux sous les hanches.',
+    movement: 'Tends un bras et la jambe opposée, marque une petite pause, puis reviens. Alterne les côtés.',
+    breath: 'Expire quand tu tends. Inspire en revenant au centre.',
+    watch: 'Le bassin reste le plus stable possible. Si c’est trop dur, tends seulement la jambe ou seulement le bras.',
+  },
+  'Dead bug': {
+    setup: 'Allongé sur le dos, bras vers le plafond, genoux pliés au-dessus des hanches.',
+    movement: 'Descends lentement un bras et la jambe opposée, puis reviens. Alterne les côtés.',
+    breath: 'Expire pendant la descente. Inspire en revenant.',
+    watch: 'Le bas du dos reste proche du sol. Fais plus petit si tu sens que le dos se creuse.',
+  },
+  'Nageur au sol': {
+    setup: 'Allongé sur le ventre, bras devant toi, regard vers le sol pour garder la nuque longue.',
+    movement: 'Lève très légèrement un bras et la jambe opposée, puis alterne. Cherche la longueur, pas la hauteur.',
+    breath: 'Respire doucement. Évite de bloquer l’air quand tu lèves.',
+    watch: 'Le mouvement doit rester petit. Stoppe ou réduis si le bas du dos pince.',
+  },
+  'Mobilité hanches': {
+    setup: 'Place-toi dans une position confortable, debout ou au sol selon ce qui te convient.',
+    movement: 'Fais des mouvements lents de hanche : ouverture, fermeture, petits cercles ou bascule douce.',
+    breath: 'Respire lentement et laisse l’expiration relâcher les tensions.',
+    watch: 'Aucune douleur vive. Reste dans une zone agréable et contrôlée.',
+  },
+  'Rotation thoracique': {
+    setup: 'Au sol ou à quatre pattes, installe-toi de façon stable avant de tourner.',
+    movement: 'Tourne doucement le haut du dos d’un côté, reviens au centre, puis change de côté.',
+    breath: 'Expire pendant la rotation. Inspire en revenant au centre.',
+    watch: 'La rotation vient du haut du dos. Ne force pas le bas du dos.',
+  },
+  'Posture de repos': {
+    setup: 'Installe-toi au sol ou assis dans une position confortable.',
+    movement: 'Relâche progressivement les épaules, la mâchoire, le ventre et les jambes.',
+    breath: 'Respire lentement. Laisse chaque expiration faire redescendre le rythme.',
+    watch: 'Le but est de finir calme, pas d’étirer fort.',
+  },
+  'Respiration douce': {
+    setup: 'Mets-toi dans une position stable et confortable.',
+    movement: 'Ne cherche plus l’effort. Laisse le corps redescendre doucement.',
+    breath: 'Inspire calmement, expire plus longuement.',
+    watch: 'Si une douleur persiste, arrête la séance et reprends plus tard.',
+  },
+};
+
 let selectedMode = 'brise';
 let currentIndex = -1;
 let remaining = 3;
@@ -209,9 +302,12 @@ const phaseLabel = document.querySelector('#phaseLabel');
 const exerciseTitle = document.querySelector('#exerciseTitle');
 const modePill = document.querySelector('#modePill');
 const progressFill = document.querySelector('#progressFill');
-const animationStage = document.querySelector('#animationStage');
 const timerText = document.querySelector('#timerText');
 const cueText = document.querySelector('#cueText');
+const setupText = document.querySelector('#setupText');
+const movementText = document.querySelector('#movementText');
+const breathText = document.querySelector('#breathText');
+const watchText = document.querySelector('#watchText');
 const encouragementText = document.querySelector('#encouragementText');
 const nextText = document.querySelector('#nextText');
 const stepCount = document.querySelector('#stepCount');
@@ -316,11 +412,13 @@ function renderPrep() {
   exerciseTitle.textContent = 'On s’installe';
   stepCount.textContent = 'Préparation';
   timerText.textContent = formatTime(remaining);
-  cueText.textContent = 'Installe-toi. On commence dans quelques secondes.';
   encouragementText.textContent = modes[selectedMode].intro;
   readyButton.textContent = awaitingReady || isPaused ? 'Prêt' : 'Pause';
   nextText.textContent = exercises[0].title;
-  setAnimation('breathe');
+  renderGuide({
+    title: 'Préparation',
+    cue: 'Installe-toi. On commence dans quelques secondes.',
+  });
   updatePhaseDots('warmup');
   progressFill.style.width = '0%';
 }
@@ -344,7 +442,10 @@ function render() {
     readyButton.textContent = isPaused ? 'Prêt' : 'Pause';
     stepCount.textContent = `Repos - étape ${Math.min(currentIndex + 2, totalSteps)}/${totalSteps}`;
     updatePhaseDots(next ? getPhaseKey(next.phase) : 'calm');
-    setAnimation('breathe');
+    renderGuide({
+      title: 'Respiration douce',
+      cue: next ? `Respire. Prochain exercice : ${next.title}.` : 'Respire. Dernier souffle avant la fin.',
+    });
     speak(next ? `Repos. Respire. Prochain exercice : ${next.title}.` : 'Repos. Dernier souffle avant la fin.', `rest-${currentIndex}`);
   } else {
     const exercise = currentAdaptation || exercises[currentIndex];
@@ -355,7 +456,7 @@ function render() {
     nextText.textContent = exercises[currentIndex + 1]?.title ?? 'Fin de séance';
     stepCount.textContent = `Étape ${currentIndex + 1}/${totalSteps}`;
     updatePhaseDots(getPhaseKey(exercise.phase));
-    setAnimation(exercise.animation);
+    renderGuide(exercise);
     speak(`${exercise.title}. ${exercise.cue}`, `exercise-${currentIndex}-${exercise.title}`);
   }
 
@@ -363,8 +464,19 @@ function render() {
   progressFill.style.width = `${Math.min(100, Math.round(progress * 100))}%`;
 }
 
-function setAnimation(name) {
-  animationStage.className = `animation-stage ${name}`;
+function renderGuide(exercise) {
+  const guide = exerciseGuides[exercise.title] || {
+    setup: 'Installe-toi dans une position confortable et stable.',
+    movement: 'Fais le mouvement lentement, en gardant le contrôle.',
+    breath: 'Respire régulièrement, sans bloquer l’air.',
+    watch: 'Si une douleur apparaît, réduis l’amplitude ou adapte.',
+  };
+
+  cueText.textContent = exercise.cue;
+  setupText.textContent = guide.setup;
+  movementText.textContent = guide.movement;
+  breathText.textContent = guide.breath;
+  watchText.textContent = guide.watch;
 }
 
 function setupVoice() {
