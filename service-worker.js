@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mon-coach-doux-v3';
+const CACHE_NAME = 'mon-coach-doux-v5';
 const APP_FILES = [
   './',
   './index.html',

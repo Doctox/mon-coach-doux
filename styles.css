@@ -294,12 +294,6 @@ h2 {
   box-shadow: var(--shadow);
 }
 
-.guide-main {
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
-}
-
-.guide-label,
 .guide-card span {
   display: block;
   color: var(--mode);
@@ -351,18 +345,6 @@ h2 {
   font-variant-numeric: tabular-nums;
   overflow-wrap: normal;
   white-space: nowrap;
-}
-
-.cue {
-  margin: 16px 0 0;
-  min-height: 116px;
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.66);
-  color: var(--ink);
-  font-size: 1.08rem;
-  line-height: 1.45;
 }
 
 .encouragement {
@@ -523,5 +505,217 @@ h2 {
 
   .guide-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    min-height: 100dvh;
+  }
+
+  .app-shell {
+    min-height: 100dvh;
+    padding: max(12px, env(safe-area-inset-top)) 14px max(18px, env(safe-area-inset-bottom));
+  }
+
+  .kicker,
+  .session-label {
+    margin-bottom: 6px;
+    font-size: 0.74rem;
+  }
+
+  h1 {
+    font-size: clamp(2.65rem, 13vw, 4.1rem);
+  }
+
+  h2 {
+    font-size: clamp(1.65rem, 8vw, 2.45rem);
+  }
+
+  .intro {
+    margin-top: 14px;
+    font-size: 1rem;
+    line-height: 1.42;
+  }
+
+  .mode-grid {
+    gap: 10px;
+    margin: 26px 0 14px;
+  }
+
+  .mode-card {
+    min-height: 86px;
+    padding: 14px 16px;
+  }
+
+  .mode-name {
+    font-size: 1.32rem;
+  }
+
+  .mode-note {
+    margin-top: 4px;
+    font-size: 0.95rem;
+  }
+
+  .session-summary {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .summary-item {
+    min-height: 62px;
+    padding: 11px 12px;
+  }
+
+  .summary-item strong {
+    font-size: 1.05rem;
+  }
+
+  .summary-item span {
+    font-size: 0.82rem;
+  }
+
+  .primary-action,
+  .ready-action,
+  .secondary-action,
+  .pain-action,
+  .adapt-actions button {
+    min-height: 54px;
+  }
+
+  .session-top {
+    grid-template-columns: 42px 1fr auto;
+    gap: 10px;
+  }
+
+  .icon-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .mode-pill {
+    min-width: auto;
+    padding: 8px 11px;
+    font-size: 0.86rem;
+  }
+
+  .step-count {
+    margin-top: 6px;
+    font-size: 0.9rem;
+  }
+
+  .progress-track {
+    height: 8px;
+    margin: 16px 0;
+  }
+
+  .phase-dots {
+    gap: 7px;
+    margin: -6px 0 14px;
+  }
+
+  .phase-dot {
+    min-height: 30px;
+    padding: 7px 8px;
+    font-size: 0.72rem;
+  }
+
+  .coach-panel {
+    gap: 12px;
+  }
+
+  .timer-block {
+    order: -1;
+    min-height: auto;
+    padding: 18px 18px 16px;
+    justify-content: start;
+  }
+
+  .timer {
+    transform: translateX(-8px);
+    font-size: clamp(4.4rem, 24vw, 6.2rem);
+    text-align: center;
+  }
+
+  .encouragement {
+    margin-top: 10px;
+    font-size: 0.98rem;
+  }
+
+  .voice-toggle {
+    min-height: 40px;
+    margin-top: 16px;
+    padding: 9px 12px;
+  }
+
+  .ready-action {
+    margin-top: 10px;
+  }
+
+  .exercise-guide {
+    min-height: auto;
+    padding: 14px;
+  }
+
+  .guide-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 0;
+  }
+
+  .guide-card {
+    min-height: 138px;
+    padding: 12px;
+  }
+
+  .guide-card span {
+    font-size: 0.68rem;
+  }
+
+  .guide-card p {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .next-panel {
+    margin: 12px 0;
+    font-size: 0.92rem;
+  }
+
+  .controls {
+    gap: 8px;
+  }
+
+  .screen-adapt,
+  .screen-finish {
+    padding-top: 18px;
+  }
+
+  .screen-adapt p,
+  .screen-finish p {
+    font-size: 1rem;
+  }
+
+  .finish-stats {
+    gap: 8px;
+    margin: 18px 0 14px;
+  }
+
+  .finish-stats div {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .guide-grid,
+  .controls,
+  .finish-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-card {
+    min-height: auto;
   }
 }

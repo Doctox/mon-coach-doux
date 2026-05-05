@@ -24,121 +24,101 @@ const exercises = [
     title: 'Respiration debout',
     phase: 'Échauffement',
     duration: 60,
-    cue: 'Debout, mains sur les côtes. Inspire par le nez, expire lentement, épaules relâchées.',
   },
   {
     title: 'Cercles d’épaules',
     phase: 'Échauffement',
     duration: 60,
-    cue: 'Fais de grands cercles avec les épaules. Monte, recule, descends, puis inverse doucement.',
   },
   {
     title: 'Cat-cow doux',
     phase: 'Échauffement',
     duration: 60,
-    cue: 'À quatre pattes : arrondis le dos à l’expiration, creuse légèrement à l’inspiration.',
   },
   {
     title: 'Ouverture de hanches',
     phase: 'Échauffement',
     duration: 60,
-    cue: 'Debout, monte un genou puis ouvre la hanche sur le côté. Alterne lentement.',
   },
   {
     title: 'Marche active',
     phase: 'Échauffement',
     duration: 60,
-    cue: 'Marche sur place. Bras souples, genoux bas si besoin, respiration régulière.',
   },
   {
     title: 'Squat contrôlé',
     phase: 'Circuit',
     duration: 'effort',
-    cue: 'Debout, pieds largeur épaules. Recule les fesses comme pour t’asseoir sur une chaise, puis remonte. Garde les talons au sol. Si les genoux gênent, descends moins bas.',
   },
   {
     title: 'Pompes adaptées',
     phase: 'Circuit',
     duration: 'effort',
-    cue: 'Place les mains sur un mur, une table solide ou au sol selon ton niveau. Plie les coudes pour approcher la poitrine, puis repousse. Garde le ventre légèrement serré.',
   },
   {
     title: 'Pont fessier',
     phase: 'Circuit',
     duration: 'effort',
-    cue: 'Allonge-toi sur le dos, genoux pliés, pieds au sol. Pousse dans les talons pour lever le bassin. Monte jusqu’à former une ligne épaules-hanches-genoux, puis redescends doucement.',
   },
   {
     title: 'Bird-dog',
     phase: 'Circuit',
     duration: 'effort',
-    cue: 'À quatre pattes, tends le bras droit et la jambe gauche, puis reviens. Alterne les côtés. Imagine un verre d’eau posé sur ton dos : il ne doit pas tomber.',
   },
   {
     title: 'Dead bug',
     phase: 'Circuit',
     duration: 'effort',
-    cue: 'Sur le dos, bras vers le plafond, genoux au-dessus des hanches. Descends lentement un bras et la jambe opposée. Reviens, puis change de côté. Le bas du dos reste proche du sol.',
   },
   {
     title: 'Nageur au sol',
     phase: 'Circuit',
     duration: 'effort',
-    cue: 'Allonge-toi sur le ventre, bras devant toi. Lève très légèrement un bras et la jambe opposée, puis alterne. Ne cherche pas à monter haut : allonge-toi comme si tu voulais grandir.',
   },
   {
     title: 'Squat contrôlé',
     phase: 'Circuit - tour 2',
     duration: 'effort',
-    cue: 'Deuxième tour : même mouvement. Fesses vers l’arrière, talons au sol, genoux dans la même direction que les pieds. Petite amplitude si besoin.',
   },
   {
     title: 'Pompes adaptées',
     phase: 'Circuit - tour 2',
     duration: 'effort',
-    cue: 'Choisis une hauteur confortable : mur, table solide, canapé stable ou sol. Descends en contrôle, repousse sans bloquer les épaules près des oreilles.',
   },
   {
     title: 'Pont fessier',
     phase: 'Circuit - tour 2',
     duration: 'effort',
-    cue: 'Pieds au sol, genoux pliés. Lève le bassin en serrant doucement les fessiers. Si tu sens trop le bas du dos, monte moins haut et ralentis.',
   },
   {
     title: 'Bird-dog',
     phase: 'Circuit - tour 2',
     duration: 'effort',
-    cue: 'À quatre pattes, tends bras et jambe opposés. Va lentement. Si c’est trop dur, tends seulement la jambe ou seulement le bras.',
   },
   {
     title: 'Dead bug',
     phase: 'Circuit - tour 2',
     duration: 'effort',
-    cue: 'Sur le dos, bouge bras et jambe opposés sans décoller le bas du dos. Si ça tire, garde les pieds plus proches du sol et fais un plus petit mouvement.',
   },
   {
     title: 'Nageur au sol',
     phase: 'Circuit - tour 2',
     duration: 'effort',
-    cue: 'Sur le ventre, regarde le sol pour garder la nuque longue. Lève peu, alterne doucement. Le but est de réveiller le haut du dos, pas de forcer.',
   },
   {
     title: 'Mobilité hanches',
     phase: 'Mobilité',
     duration: 60,
-    cue: 'Bouge lentement, garde une amplitude agréable.',
   },
   {
     title: 'Rotation thoracique',
     phase: 'Mobilité',
     duration: 60,
-    cue: 'Tourne doucement, sans tirer sur le bas du dos.',
   },
   {
     title: 'Posture de repos',
     phase: 'Retour au calme',
     duration: 60,
-    cue: 'Relâche, respire, laisse le corps redescendre.',
   },
 ];
 
@@ -283,7 +263,6 @@ const exerciseTitle = document.querySelector('#exerciseTitle');
 const modePill = document.querySelector('#modePill');
 const progressFill = document.querySelector('#progressFill');
 const timerText = document.querySelector('#timerText');
-const cueText = document.querySelector('#cueText');
 const setupText = document.querySelector('#setupText');
 const movementText = document.querySelector('#movementText');
 const breathText = document.querySelector('#breathText');
@@ -397,7 +376,6 @@ function renderPrep() {
   nextText.textContent = exercises[0].title;
   renderGuide({
     title: 'Préparation',
-    cue: 'Installe-toi. On commence dans quelques secondes.',
   });
   updatePhaseDots('warmup');
   progressFill.style.width = '0%';
@@ -416,7 +394,6 @@ function render() {
     const next = exercises[currentIndex + 1];
     phaseLabel.textContent = 'Repos guidé';
     exerciseTitle.textContent = 'Respire';
-    cueText.textContent = next ? `Prochain exercice : ${next.title}.` : 'Dernier souffle avant la fin.';
     encouragementText.textContent = 'Relâche les épaules. Tu repars dans quelques secondes.';
     nextText.textContent = next ? next.title : 'Fin de séance';
     readyButton.textContent = isPaused ? 'Prêt' : 'Pause';
@@ -424,20 +401,18 @@ function render() {
     updatePhaseDots(next ? getPhaseKey(next.phase) : 'calm');
     renderGuide({
       title: 'Respiration douce',
-      cue: next ? `Respire. Prochain exercice : ${next.title}.` : 'Respire. Dernier souffle avant la fin.',
     });
     speak(next ? `Repos. Respire. Prochain exercice : ${next.title}.` : 'Repos. Dernier souffle avant la fin.', `rest-${currentIndex}`);
   } else {
     const exercise = currentAdaptation || exercises[currentIndex];
     phaseLabel.textContent = exercise.phase;
     exerciseTitle.textContent = exercise.title;
-    cueText.textContent = exercise.cue;
     encouragementText.textContent = getEncouragement();
     nextText.textContent = exercises[currentIndex + 1]?.title ?? 'Fin de séance';
     stepCount.textContent = `Étape ${currentIndex + 1}/${totalSteps}`;
     updatePhaseDots(getPhaseKey(exercise.phase));
     renderGuide(exercise);
-    speak(`${exercise.title}. ${exercise.cue}`, `exercise-${currentIndex}-${exercise.title}`);
+    speak(`${exercise.title}. ${getSpokenGuide(exercise)}`, `exercise-${currentIndex}-${exercise.title}`);
   }
 
   const progress = Math.max(0, currentIndex + 1) / totalSteps;
@@ -445,18 +420,26 @@ function render() {
 }
 
 function renderGuide(exercise) {
-  const guide = exerciseGuides[exercise.title] || {
+  const guide = getGuide(exercise);
+
+  setupText.textContent = guide.setup;
+  movementText.textContent = guide.movement;
+  breathText.textContent = guide.breath;
+  watchText.textContent = guide.watch;
+}
+
+function getGuide(exercise) {
+  return exerciseGuides[exercise.title] || {
     setup: 'Installe-toi dans une position confortable et stable.',
     movement: 'Fais le mouvement lentement, en gardant le contrôle.',
     breath: 'Respire régulièrement, sans bloquer l’air.',
     watch: 'Si une douleur apparaît, réduis l’amplitude ou adapte.',
   };
+}
 
-  cueText.textContent = exercise.cue;
-  setupText.textContent = guide.setup;
-  movementText.textContent = guide.movement;
-  breathText.textContent = guide.breath;
-  watchText.textContent = guide.watch;
+function getSpokenGuide(exercise) {
+  const guide = getGuide(exercise);
+  return `${guide.setup} ${guide.movement} ${guide.breath} ${guide.watch}`;
 }
 
 function setupVoice() {
@@ -591,7 +574,6 @@ function replaceWithBreathing() {
   currentAdaptation = {
     title: 'Respiration douce',
     phase: 'Adaptation',
-    cue: 'Respire lentement. On laisse le corps redescendre.',
   };
   resumeFromAdapt();
 }
