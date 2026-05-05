@@ -1,0 +1,906 @@
+:root {
+  --paper: #f7f4ee;
+  --ink: #20201d;
+  --muted: #67645f;
+  --line: #ddd6ca;
+  --leaf: #5e7d63;
+  --moss: #314c3d;
+  --clay: #b96948;
+  --night: #252735;
+  --mode: #314c3d;
+  --mode-soft: rgba(49, 76, 61, 0.16);
+  --white: #ffffff;
+  --shadow: 0 18px 45px rgba(48, 43, 34, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    linear-gradient(135deg, rgba(94, 125, 99, 0.14), transparent 42%),
+    linear-gradient(315deg, rgba(185, 105, 72, 0.12), transparent 44%),
+    var(--paper);
+}
+
+body[data-mode="brise"] {
+  --mode: #5e7d63;
+  --mode-soft: rgba(94, 125, 99, 0.18);
+}
+
+body[data-mode="doux"] {
+  --mode: #b96948;
+  --mode-soft: rgba(185, 105, 72, 0.18);
+}
+
+body[data-mode="sombre"] {
+  --mode: #252735;
+  --mode-soft: rgba(37, 39, 53, 0.18);
+}
+
+button {
+  color: inherit;
+  font: inherit;
+}
+
+.app-shell {
+  width: min(980px, 100%);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px;
+  display: grid;
+  align-items: center;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+}
+
+.screen.is-active {
+  display: block;
+}
+
+.brand-block {
+  max-width: 680px;
+}
+
+.kicker,
+.session-label {
+  margin: 0 0 10px;
+  color: var(--leaf);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 6.6rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.intro {
+  max-width: 640px;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 1.18rem;
+  line-height: 1.55;
+}
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 42px 0 22px;
+}
+
+.mode-card,
+.primary-action,
+.secondary-action,
+.pain-action,
+.ready-action,
+.adapt-actions button,
+.icon-button {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.mode-card {
+  min-height: 116px;
+  padding: 18px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 10px 28px rgba(48, 43, 34, 0.06);
+}
+
+.mode-card:hover,
+.primary-action:hover,
+.secondary-action:hover,
+.pain-action:hover,
+.adapt-actions button:hover,
+.icon-button:hover {
+  transform: translateY(-1px);
+}
+
+.mode-card.is-selected {
+  color: var(--white);
+  border-color: var(--mode);
+  background: var(--mode);
+}
+
+.mode-name,
+.mode-note {
+  display: block;
+}
+
+.mode-name {
+  font-size: 1.55rem;
+  font-weight: 800;
+}
+
+.mode-note {
+  margin-top: 8px;
+  color: inherit;
+  opacity: 0.78;
+  line-height: 1.35;
+}
+
+.primary-action {
+  width: 100%;
+  min-height: 62px;
+  padding: 18px 22px;
+  color: var(--white);
+  border-color: var(--mode);
+  background: var(--mode);
+  font-weight: 800;
+}
+
+.session-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 0 0 22px;
+}
+
+.summary-item {
+  min-height: 74px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.summary-item strong,
+.summary-item span {
+  display: block;
+}
+
+.summary-item strong {
+  color: var(--mode);
+  font-size: 1.2rem;
+}
+
+.summary-item span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.session-top {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.icon-button {
+  width: 48px;
+  height: 48px;
+  background: var(--white);
+  font-size: 1.25rem;
+}
+
+.mode-pill {
+  min-width: 86px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: var(--white);
+  background: var(--mode);
+  text-align: center;
+  font-weight: 800;
+}
+
+.step-count {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.progress-track {
+  height: 10px;
+  margin: 28px 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--mode-soft);
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--mode);
+  transition: width 300ms ease;
+}
+
+.phase-dots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: -12px 0 22px;
+}
+
+.phase-dot {
+  min-height: 34px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.phase-dot.is-active {
+  color: var(--white);
+  border-color: var(--mode);
+  background: var(--mode);
+}
+
+.coach-panel {
+  display: grid;
+  grid-template-columns: minmax(340px, 1.12fr) minmax(260px, 0.82fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.movement-panel {
+  min-width: 0;
+}
+
+.animation-stage {
+  min-height: 340px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f7f7f5;
+  box-shadow: var(--shadow);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.figure {
+  position: relative;
+  width: 240px;
+  height: 270px;
+}
+
+.body-root {
+  position: absolute;
+  width: 240px;
+  height: 260px;
+  left: 0;
+  top: 0;
+  transform-origin: 120px 116px;
+}
+
+.figure span,
+.limb {
+  position: absolute;
+  display: block;
+}
+
+.figure span {
+  border-radius: 999px;
+  background: var(--night);
+  transform-origin: center top;
+}
+
+.head {
+  width: 42px;
+  height: 42px;
+  top: 8px;
+  left: 99px;
+  background: var(--leaf) !important;
+}
+
+.torso {
+  width: 18px;
+  height: 86px;
+  top: 56px;
+  left: 111px;
+}
+
+.limb {
+  transform-origin: center top;
+}
+
+.arm {
+  width: 34px;
+  height: 108px;
+}
+
+.arm-left {
+  top: 62px;
+  left: 86px;
+  transform: rotate(28deg);
+}
+
+.arm-right {
+  top: 62px;
+  left: 120px;
+  transform: rotate(-28deg);
+}
+
+.upper-arm {
+  top: 0;
+  left: 10px;
+  width: 14px;
+  height: 52px;
+}
+
+.joint {
+  width: 20px;
+  height: 20px;
+  left: 7px;
+  background: var(--leaf) !important;
+}
+
+.elbow {
+  top: 45px;
+}
+
+.forearm {
+  top: 56px;
+  left: 10px;
+  width: 14px;
+  height: 54px;
+  transform-origin: center top;
+}
+
+.hand {
+  width: 24px;
+  height: 12px;
+  top: 104px;
+  left: 5px;
+  background: var(--clay) !important;
+  transform-origin: center center;
+}
+
+.arm-left .forearm {
+  transform: rotate(18deg);
+}
+
+.arm-right .forearm {
+  transform: rotate(-18deg);
+}
+
+.leg {
+  width: 42px;
+  height: 128px;
+}
+
+.leg-left {
+  top: 136px;
+  left: 90px;
+  transform: rotate(10deg);
+}
+
+.leg-right {
+  top: 136px;
+  left: 118px;
+  transform: rotate(-10deg);
+}
+
+.thigh {
+  top: 0;
+  left: 13px;
+  width: 16px;
+  height: 62px;
+}
+
+.knee {
+  top: 55px;
+  left: 11px;
+}
+
+.shin {
+  top: 66px;
+  left: 13px;
+  width: 16px;
+  height: 66px;
+  transform-origin: center top;
+}
+
+.foot {
+  width: 30px;
+  height: 12px;
+  top: 126px;
+  left: 4px;
+  background: var(--clay) !important;
+  transform-origin: center center;
+}
+
+.mat-line {
+  width: 196px;
+  height: 12px;
+  left: 22px;
+  bottom: -8px;
+  background: rgba(94, 125, 99, 0.18) !important;
+}
+
+.animation-stage.breathe .body-root {
+  animation: breathe 2.8s ease-in-out infinite;
+}
+
+.animation-stage.shoulders .arm-left {
+  animation: shoulderLeft 1.8s ease-in-out infinite;
+}
+
+.animation-stage.shoulders .arm-right {
+  animation: shoulderRight 1.8s ease-in-out infinite;
+}
+
+.animation-stage.catcow .body-root,
+.animation-stage.birddog .body-root {
+  animation: quadrupedPose 0.1s linear forwards;
+}
+
+.animation-stage.catcow .torso {
+  animation: catCowSpine 1.8s ease-in-out infinite;
+}
+
+.animation-stage.core .body-root,
+.animation-stage.swimmer .body-root {
+  animation: floorPose 0.1s linear forwards;
+}
+
+.animation-stage.hips .leg-right,
+.animation-stage.mobility .leg-right {
+  animation: hipOpenLeg 1.9s ease-in-out infinite;
+}
+
+.animation-stage.hips .leg-right .shin,
+.animation-stage.mobility .leg-right .shin {
+  animation: hipOpenShin 1.9s ease-in-out infinite;
+}
+
+.animation-stage.march .arm-left,
+.animation-stage.march .leg-right {
+  animation: marchForward 1s ease-in-out infinite;
+}
+
+.animation-stage.march .arm-right,
+.animation-stage.march .leg-left {
+  animation: marchBack 1s ease-in-out infinite;
+}
+
+.animation-stage.squat .torso,
+.animation-stage.squat .head,
+.animation-stage.squat .arm {
+  animation: squatDrop 1.55s ease-in-out infinite;
+}
+
+.animation-stage.squat .leg-left {
+  animation: squatLegLeft 1.55s ease-in-out infinite;
+}
+
+.animation-stage.squat .leg-right {
+  animation: squatLegRight 1.55s ease-in-out infinite;
+}
+
+.animation-stage.squat .leg-left .shin {
+  animation: squatShinLeft 1.55s ease-in-out infinite;
+}
+
+.animation-stage.squat .leg-right .shin {
+  animation: squatShinRight 1.55s ease-in-out infinite;
+}
+
+.animation-stage.pushup .body-root {
+  animation: pushupPose 1.5s ease-in-out infinite;
+}
+
+.animation-stage.pushup .forearm {
+  animation: pushupElbow 1.5s ease-in-out infinite;
+}
+
+.animation-stage.bridge .body-root {
+  animation: bridgePose 1.7s ease-in-out infinite;
+}
+
+.animation-stage.birddog .arm-left,
+.animation-stage.birddog .leg-right {
+  animation: reachLong 1.8s ease-in-out infinite;
+}
+
+.animation-stage.birddog .arm-left .forearm,
+.animation-stage.birddog .leg-right .shin {
+  animation: straightenJoint 1.8s ease-in-out infinite;
+}
+
+.animation-stage.core .arm-left,
+.animation-stage.core .leg-right {
+  animation: deadBugReach 1.8s ease-in-out infinite;
+}
+
+.animation-stage.swimmer .arm,
+.animation-stage.swimmer .leg {
+  animation: swimmerLift 1.4s ease-in-out infinite;
+}
+
+.timer-block {
+  min-width: 0;
+  min-height: 340px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timer {
+  max-width: 100%;
+  transform: translateX(-16px);
+  font-size: clamp(3.8rem, 10vw, 7.4rem);
+  font-weight: 900;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: normal;
+  white-space: nowrap;
+}
+
+.cue {
+  margin: 16px 0 0;
+  min-height: 116px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.66);
+  color: var(--ink);
+  font-size: 1.08rem;
+  line-height: 1.45;
+}
+
+.encouragement {
+  margin: 18px 0 0;
+  color: var(--leaf);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.ready-action {
+  width: 100%;
+  min-height: 56px;
+  margin-top: 14px;
+  padding: 14px 18px;
+  color: var(--white);
+  border-color: var(--mode);
+  background: var(--mode);
+  font-weight: 900;
+}
+
+.voice-toggle {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 24px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.voice-toggle.is-on {
+  color: var(--mode);
+  border-color: var(--mode-soft);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.next-panel {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin: 18px 0;
+  color: var(--muted);
+}
+
+.next-panel strong {
+  color: var(--ink);
+}
+
+.controls,
+.adapt-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.secondary-action,
+.pain-action,
+.adapt-actions button {
+  min-height: 52px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  font-weight: 800;
+}
+
+.pain-action {
+  color: var(--white);
+  border-color: var(--clay);
+  background: var(--clay);
+}
+
+.screen-adapt,
+.screen-finish {
+  max-width: 720px;
+}
+
+.screen-adapt p,
+.screen-finish p {
+  color: var(--muted);
+  font-size: 1.2rem;
+  line-height: 1.55;
+}
+
+.finish-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 24px 0 18px;
+}
+
+.finish-stats div {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.finish-stats strong,
+.finish-stats span {
+  display: block;
+}
+
+.finish-stats strong {
+  color: var(--mode);
+  font-size: 1.6rem;
+}
+
+.finish-stats span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.adapt-actions {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 28px;
+}
+
+@media (max-width: 780px) {
+  .app-shell {
+    padding: 18px;
+    align-items: start;
+  }
+
+  .mode-grid,
+  .session-summary,
+  .coach-panel,
+  .controls,
+  .adapt-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .session-top {
+    grid-template-columns: 44px 1fr;
+  }
+
+  .mode-pill {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .animation-stage,
+  .timer-block {
+    min-height: 260px;
+  }
+
+  .timer {
+    font-size: clamp(3.3rem, 18vw, 5.4rem);
+  }
+
+  .phase-dots {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .figure {
+    transform: scale(0.82);
+  }
+}
+
+@keyframes breathe {
+  50% { transform: scale(1.06); }
+}
+
+@keyframes shoulderLeft {
+  50% { transform: rotate(118deg) translateY(-12px); }
+}
+
+@keyframes shoulderRight {
+  50% { transform: rotate(-118deg) translateY(-12px); }
+}
+
+@keyframes floorRotate {
+  to { transform: rotate(88deg) translate(18px, 4px); }
+}
+
+@keyframes floorPose {
+  to { transform: rotate(88deg) translate(18px, 4px); }
+}
+
+@keyframes quadrupedPose {
+  to { transform: translate(0, 0); }
+}
+
+.animation-stage.catcow .head,
+.animation-stage.birddog .head {
+  top: 90px;
+  left: 166px;
+}
+
+.animation-stage.catcow .torso,
+.animation-stage.birddog .torso {
+  top: 112px;
+  left: 86px;
+  height: 96px;
+  transform: rotate(90deg);
+}
+
+.animation-stage.catcow .arm-left,
+.animation-stage.birddog .arm-left {
+  top: 124px;
+  left: 148px;
+  transform: rotate(8deg);
+}
+
+.animation-stage.catcow .arm-right,
+.animation-stage.birddog .arm-right {
+  top: 128px;
+  left: 174px;
+  transform: rotate(6deg);
+}
+
+.animation-stage.catcow .arm .forearm,
+.animation-stage.birddog .arm .forearm {
+  transform: rotate(0deg);
+}
+
+.animation-stage.catcow .leg-left,
+.animation-stage.birddog .leg-left {
+  top: 126px;
+  left: 58px;
+  transform: rotate(-6deg);
+}
+
+.animation-stage.catcow .leg-right,
+.animation-stage.birddog .leg-right {
+  top: 128px;
+  left: 86px;
+  transform: rotate(-4deg);
+}
+
+.animation-stage.catcow .leg .shin,
+.animation-stage.birddog .leg .shin {
+  transform: rotate(80deg);
+}
+
+.animation-stage.catcow .leg .foot,
+.animation-stage.birddog .leg .foot {
+  transform: rotate(84deg);
+}
+
+@keyframes catCowSpine {
+  0%, 100% { transform: rotate(90deg) scaleY(1); }
+  50% { transform: rotate(90deg) translateY(10px) scaleY(0.82); }
+}
+
+@keyframes hipOpenLeg {
+  50% { transform: rotate(-58deg) translate(8px, -16px); }
+}
+
+@keyframes hipOpenShin {
+  50% { transform: rotate(34deg); }
+}
+
+@keyframes marchForward {
+  50% { transform: rotate(-34deg) translateY(-16px); }
+}
+
+@keyframes marchBack {
+  50% { transform: rotate(28deg) translateY(12px); }
+}
+
+@keyframes squatDrop {
+  50% { transform: translateY(42px); }
+}
+
+@keyframes squatLegLeft {
+  50% { transform: rotate(66deg) translate(8px, 14px); }
+}
+
+@keyframes squatLegRight {
+  50% { transform: rotate(-66deg) translate(-8px, 14px); }
+}
+
+@keyframes squatShinLeft {
+  50% { transform: rotate(-72deg); }
+}
+
+@keyframes squatShinRight {
+  50% { transform: rotate(72deg); }
+}
+
+@keyframes pushupPose {
+  0%, 100% { transform: rotate(84deg) translate(12px, 8px); }
+  50% { transform: rotate(84deg) translate(12px, 36px); }
+}
+
+@keyframes pushupElbow {
+  50% { transform: rotate(70deg) translateY(4px); }
+}
+
+@keyframes bridgePose {
+  0%, 100% { transform: rotate(88deg) translate(16px, 26px); }
+  50% { transform: rotate(88deg) translate(16px, -8px); }
+}
+
+@keyframes reachLong {
+  50% { transform: rotate(86deg) translate(22px, -52px); }
+}
+
+@keyframes straightenJoint {
+  50% { transform: rotate(0deg); }
+}
+
+@keyframes deadBugReach {
+  50% { transform: rotate(-52deg) translateY(-22px); }
+}
+
+@keyframes swimmerLift {
+  50% { transform: rotate(44deg) translateY(-14px); }
+}

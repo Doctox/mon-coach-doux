@@ -1,0 +1,537 @@
+const modes = {
+  brise: {
+    label: 'Brise',
+    effort: 35,
+    rest: 25,
+    intro: 'Aujourd’hui, le but c’est juste d’être là.',
+  },
+  doux: {
+    label: 'Doux',
+    effort: 45,
+    rest: 20,
+    intro: 'Garde le rythme. Propre plutôt que rapide.',
+  },
+  sombre: {
+    label: 'Sombre',
+    effort: 50,
+    rest: 15,
+    intro: 'Reste solide. Lent, propre, contrôlé.',
+  },
+};
+
+const exercises = [
+  {
+    title: 'Respiration debout',
+    phase: 'Échauffement',
+    duration: 60,
+    animation: 'breathe',
+    cue: 'Debout, mains sur les côtes. Inspire par le nez, expire lentement, épaules relâchées.',
+  },
+  {
+    title: 'Cercles d’épaules',
+    phase: 'Échauffement',
+    duration: 60,
+    animation: 'shoulders',
+    cue: 'Fais de grands cercles avec les épaules. Monte, recule, descends, puis inverse doucement.',
+  },
+  {
+    title: 'Cat-cow doux',
+    phase: 'Échauffement',
+    duration: 60,
+    animation: 'catcow',
+    cue: 'À quatre pattes : arrondis le dos à l’expiration, creuse légèrement à l’inspiration.',
+  },
+  {
+    title: 'Ouverture de hanches',
+    phase: 'Échauffement',
+    duration: 60,
+    animation: 'hips',
+    cue: 'Debout, monte un genou puis ouvre la hanche sur le côté. Alterne lentement.',
+  },
+  {
+    title: 'Marche active',
+    phase: 'Échauffement',
+    duration: 60,
+    animation: 'march',
+    cue: 'Marche sur place. Bras souples, genoux bas si besoin, respiration régulière.',
+  },
+  {
+    title: 'Squat contrôlé',
+    phase: 'Circuit',
+    duration: 'effort',
+    animation: 'squat',
+    cue: 'Debout, pieds largeur épaules. Recule les fesses comme pour t’asseoir sur une chaise, puis remonte. Garde les talons au sol. Si les genoux gênent, descends moins bas.',
+  },
+  {
+    title: 'Pompes adaptées',
+    phase: 'Circuit',
+    duration: 'effort',
+    animation: 'pushup',
+    cue: 'Place les mains sur un mur, une table solide ou au sol selon ton niveau. Plie les coudes pour approcher la poitrine, puis repousse. Garde le ventre légèrement serré.',
+  },
+  {
+    title: 'Pont fessier',
+    phase: 'Circuit',
+    duration: 'effort',
+    animation: 'bridge',
+    cue: 'Allonge-toi sur le dos, genoux pliés, pieds au sol. Pousse dans les talons pour lever le bassin. Monte jusqu’à former une ligne épaules-hanches-genoux, puis redescends doucement.',
+  },
+  {
+    title: 'Bird-dog',
+    phase: 'Circuit',
+    duration: 'effort',
+    animation: 'birddog',
+    cue: 'À quatre pattes, tends le bras droit et la jambe gauche, puis reviens. Alterne les côtés. Imagine un verre d’eau posé sur ton dos : il ne doit pas tomber.',
+  },
+  {
+    title: 'Dead bug',
+    phase: 'Circuit',
+    duration: 'effort',
+    animation: 'core',
+    cue: 'Sur le dos, bras vers le plafond, genoux au-dessus des hanches. Descends lentement un bras et la jambe opposée. Reviens, puis change de côté. Le bas du dos reste proche du sol.',
+  },
+  {
+    title: 'Nageur au sol',
+    phase: 'Circuit',
+    duration: 'effort',
+    animation: 'swimmer',
+    cue: 'Allonge-toi sur le ventre, bras devant toi. Lève très légèrement un bras et la jambe opposée, puis alterne. Ne cherche pas à monter haut : allonge-toi comme si tu voulais grandir.',
+  },
+  {
+    title: 'Squat contrôlé',
+    phase: 'Circuit - tour 2',
+    duration: 'effort',
+    animation: 'squat',
+    cue: 'Deuxième tour : même mouvement. Fesses vers l’arrière, talons au sol, genoux dans la même direction que les pieds. Petite amplitude si besoin.',
+  },
+  {
+    title: 'Pompes adaptées',
+    phase: 'Circuit - tour 2',
+    duration: 'effort',
+    animation: 'pushup',
+    cue: 'Choisis une hauteur confortable : mur, table solide, canapé stable ou sol. Descends en contrôle, repousse sans bloquer les épaules près des oreilles.',
+  },
+  {
+    title: 'Pont fessier',
+    phase: 'Circuit - tour 2',
+    duration: 'effort',
+    animation: 'bridge',
+    cue: 'Pieds au sol, genoux pliés. Lève le bassin en serrant doucement les fessiers. Si tu sens trop le bas du dos, monte moins haut et ralentis.',
+  },
+  {
+    title: 'Bird-dog',
+    phase: 'Circuit - tour 2',
+    duration: 'effort',
+    animation: 'birddog',
+    cue: 'À quatre pattes, tends bras et jambe opposés. Va lentement. Si c’est trop dur, tends seulement la jambe ou seulement le bras.',
+  },
+  {
+    title: 'Dead bug',
+    phase: 'Circuit - tour 2',
+    duration: 'effort',
+    animation: 'core',
+    cue: 'Sur le dos, bouge bras et jambe opposés sans décoller le bas du dos. Si ça tire, garde les pieds plus proches du sol et fais un plus petit mouvement.',
+  },
+  {
+    title: 'Nageur au sol',
+    phase: 'Circuit - tour 2',
+    duration: 'effort',
+    animation: 'swimmer',
+    cue: 'Sur le ventre, regarde le sol pour garder la nuque longue. Lève peu, alterne doucement. Le but est de réveiller le haut du dos, pas de forcer.',
+  },
+  {
+    title: 'Mobilité hanches',
+    phase: 'Mobilité',
+    duration: 60,
+    animation: 'mobility',
+    cue: 'Bouge lentement, garde une amplitude agréable.',
+  },
+  {
+    title: 'Rotation thoracique',
+    phase: 'Mobilité',
+    duration: 60,
+    animation: 'mobility',
+    cue: 'Tourne doucement, sans tirer sur le bas du dos.',
+  },
+  {
+    title: 'Posture de repos',
+    phase: 'Retour au calme',
+    duration: 60,
+    animation: 'breathe',
+    cue: 'Relâche, respire, laisse le corps redescendre.',
+  },
+];
+
+const restPhases = ['Circuit', 'Circuit - tour 2'];
+
+const encouragements = [
+  'Tranquille. Tu n’as qu’à suivre.',
+  'Respire, garde le contrôle.',
+  'Propre plutôt que rapide.',
+  'Tu avances, exercice après exercice.',
+  'Encore un peu, sans forcer.',
+];
+
+let selectedMode = 'brise';
+let currentIndex = -1;
+let remaining = 3;
+let currentState = 'prep';
+let isPaused = false;
+let awaitingReady = true;
+let tickId = null;
+let totalSteps = exercises.length;
+let currentAdaptation = null;
+let voiceEnabled = true;
+let speechVoice = null;
+let lastSpokenKey = '';
+
+const screens = {
+  home: document.querySelector('#homeScreen'),
+  session: document.querySelector('#sessionScreen'),
+  adapt: document.querySelector('#adaptScreen'),
+  finish: document.querySelector('#finishScreen'),
+};
+
+const modeCards = document.querySelectorAll('.mode-card');
+const startButton = document.querySelector('#startButton');
+const backButton = document.querySelector('#backButton');
+const readyButton = document.querySelector('#readyButton');
+const skipButton = document.querySelector('#skipButton');
+const painButton = document.querySelector('#painButton');
+const switchBriseButton = document.querySelector('#switchBriseButton');
+const replaceButton = document.querySelector('#replaceButton');
+const stopButton = document.querySelector('#stopButton');
+const resumeFromAdaptButton = document.querySelector('#resumeFromAdaptButton');
+const restartButton = document.querySelector('#restartButton');
+const voiceToggle = document.querySelector('#voiceToggle');
+
+const phaseLabel = document.querySelector('#phaseLabel');
+const exerciseTitle = document.querySelector('#exerciseTitle');
+const modePill = document.querySelector('#modePill');
+const progressFill = document.querySelector('#progressFill');
+const animationStage = document.querySelector('#animationStage');
+const timerText = document.querySelector('#timerText');
+const cueText = document.querySelector('#cueText');
+const encouragementText = document.querySelector('#encouragementText');
+const nextText = document.querySelector('#nextText');
+const stepCount = document.querySelector('#stepCount');
+const phaseDots = document.querySelectorAll('.phase-dot');
+const finishMode = document.querySelector('#finishMode');
+const finishSteps = document.querySelector('#finishSteps');
+
+modeCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    selectedMode = card.dataset.mode;
+    document.body.dataset.mode = selectedMode;
+    modeCards.forEach((item) => item.classList.remove('is-selected'));
+    card.classList.add('is-selected');
+  });
+});
+
+document.body.dataset.mode = selectedMode;
+
+startButton.addEventListener('click', startSession);
+backButton.addEventListener('click', goHome);
+readyButton.addEventListener('click', toggleReadyPause);
+skipButton.addEventListener('click', skipCurrent);
+painButton.addEventListener('click', showAdapt);
+switchBriseButton.addEventListener('click', switchToBrise);
+replaceButton.addEventListener('click', replaceWithBreathing);
+stopButton.addEventListener('click', finishSession);
+resumeFromAdaptButton.addEventListener('click', resumeFromAdapt);
+restartButton.addEventListener('click', goHome);
+voiceToggle.addEventListener('click', toggleVoice);
+
+setupVoice();
+
+function showScreen(name) {
+  Object.values(screens).forEach((screen) => screen.classList.remove('is-active'));
+  screens[name].classList.add('is-active');
+}
+
+function startSession() {
+  currentIndex = -1;
+  remaining = 3;
+  currentState = 'prep';
+  isPaused = false;
+  awaitingReady = true;
+  currentAdaptation = null;
+  lastSpokenKey = '';
+  modePill.textContent = modes[selectedMode].label;
+  readyButton.textContent = 'Prêt';
+  showScreen('session');
+  renderPrep();
+  speak('Installe-toi. La séance va commencer. Je te guide étape par étape.', 'prep');
+  startTicking();
+}
+
+function startTicking() {
+  clearInterval(tickId);
+  tickId = setInterval(() => {
+    if (isPaused || awaitingReady) return;
+    remaining -= 1;
+    if (remaining <= 0) {
+      advance();
+    } else {
+      render();
+    }
+  }, 1000);
+}
+
+function advance() {
+  if (currentState === 'prep' || currentState === 'rest') {
+    currentIndex += 1;
+    currentAdaptation = null;
+    if (currentIndex >= exercises.length) {
+      finishSession();
+      return;
+    }
+    currentState = 'exercise';
+    remaining = getExerciseDuration(exercises[currentIndex]);
+    awaitingReady = shouldWaitForReady(exercises[currentIndex]);
+  } else {
+    const hasNext = currentIndex < exercises.length - 1;
+    if (!hasNext) {
+      finishSession();
+      return;
+    }
+    if (needsRestAfter(exercises[currentIndex])) {
+      currentState = 'rest';
+      remaining = modes[selectedMode].rest;
+      awaitingReady = false;
+    } else {
+      currentIndex += 1;
+      currentAdaptation = null;
+      currentState = 'exercise';
+      remaining = getExerciseDuration(exercises[currentIndex]);
+      awaitingReady = shouldWaitForReady(exercises[currentIndex]);
+    }
+  }
+  isPaused = false;
+  render();
+}
+
+function renderPrep() {
+  phaseLabel.textContent = 'Préparation';
+  exerciseTitle.textContent = 'On s’installe';
+  stepCount.textContent = 'Préparation';
+  timerText.textContent = formatTime(remaining);
+  cueText.textContent = 'Installe-toi. On commence dans quelques secondes.';
+  encouragementText.textContent = modes[selectedMode].intro;
+  readyButton.textContent = awaitingReady || isPaused ? 'Prêt' : 'Pause';
+  nextText.textContent = exercises[0].title;
+  setAnimation('breathe');
+  updatePhaseDots('warmup');
+  progressFill.style.width = '0%';
+}
+
+function render() {
+  timerText.textContent = formatTime(remaining);
+  readyButton.textContent = awaitingReady || isPaused ? 'Prêt' : 'Pause';
+
+  if (currentState === 'prep') {
+    renderPrep();
+    return;
+  }
+
+  if (currentState === 'rest') {
+    const next = exercises[currentIndex + 1];
+    phaseLabel.textContent = 'Repos guidé';
+    exerciseTitle.textContent = 'Respire';
+    cueText.textContent = next ? `Prochain exercice : ${next.title}.` : 'Dernier souffle avant la fin.';
+    encouragementText.textContent = 'Relâche les épaules. Tu repars dans quelques secondes.';
+    nextText.textContent = next ? next.title : 'Fin de séance';
+    readyButton.textContent = isPaused ? 'Prêt' : 'Pause';
+    stepCount.textContent = `Repos - étape ${Math.min(currentIndex + 2, totalSteps)}/${totalSteps}`;
+    updatePhaseDots(next ? getPhaseKey(next.phase) : 'calm');
+    setAnimation('breathe');
+    speak(next ? `Repos. Respire. Prochain exercice : ${next.title}.` : 'Repos. Dernier souffle avant la fin.', `rest-${currentIndex}`);
+  } else {
+    const exercise = currentAdaptation || exercises[currentIndex];
+    phaseLabel.textContent = exercise.phase;
+    exerciseTitle.textContent = exercise.title;
+    cueText.textContent = exercise.cue;
+    encouragementText.textContent = getEncouragement();
+    nextText.textContent = exercises[currentIndex + 1]?.title ?? 'Fin de séance';
+    stepCount.textContent = `Étape ${currentIndex + 1}/${totalSteps}`;
+    updatePhaseDots(getPhaseKey(exercise.phase));
+    setAnimation(exercise.animation);
+    speak(`${exercise.title}. ${exercise.cue}`, `exercise-${currentIndex}-${exercise.title}`);
+  }
+
+  const progress = Math.max(0, currentIndex + 1) / totalSteps;
+  progressFill.style.width = `${Math.min(100, Math.round(progress * 100))}%`;
+}
+
+function setAnimation(name) {
+  animationStage.className = `animation-stage ${name}`;
+}
+
+function setupVoice() {
+  if (!('speechSynthesis' in window)) {
+    voiceEnabled = false;
+    voiceToggle.textContent = 'Voix indisponible';
+    voiceToggle.classList.remove('is-on');
+    voiceToggle.disabled = true;
+    return;
+  }
+
+  const loadVoice = () => {
+    const voices = window.speechSynthesis.getVoices();
+    const frenchVoices = voices.filter((voice) => voice.lang.toLowerCase().startsWith('fr'));
+    speechVoice =
+      frenchVoices.find((voice) => /thomas|henri|paul|male|homme/i.test(voice.name)) ||
+      frenchVoices[0] ||
+      voices[0] ||
+      null;
+  };
+
+  loadVoice();
+  window.speechSynthesis.onvoiceschanged = loadVoice;
+}
+
+function speak(text, key) {
+  if (!voiceEnabled || !('speechSynthesis' in window) || lastSpokenKey === key) return;
+
+  lastSpokenKey = key;
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'fr-FR';
+  utterance.rate = 0.86;
+  utterance.pitch = 0.72;
+  utterance.volume = 0.95;
+  if (speechVoice) utterance.voice = speechVoice;
+  window.speechSynthesis.speak(utterance);
+}
+
+function toggleVoice() {
+  voiceEnabled = !voiceEnabled;
+  voiceToggle.classList.toggle('is-on', voiceEnabled);
+  voiceToggle.setAttribute('aria-pressed', String(voiceEnabled));
+  voiceToggle.textContent = voiceEnabled ? 'Voix activée' : 'Voix coupée';
+
+  if (!voiceEnabled && 'speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  } else {
+    speak('Voix activée.', 'voice-on');
+  }
+}
+
+function getExerciseDuration(exercise) {
+  return exercise.duration === 'effort' ? modes[selectedMode].effort : exercise.duration;
+}
+
+function needsRestAfter(exercise) {
+  return restPhases.includes(exercise.phase);
+}
+
+function shouldWaitForReady(exercise) {
+  return !exercise.phase.includes('Échauffement');
+}
+
+function getPhaseKey(phase) {
+  if (phase.includes('Circuit')) return 'circuit';
+  if (phase.includes('Mobil')) return 'mobility';
+  if (phase.includes('Retour')) return 'calm';
+  return 'warmup';
+}
+
+function updatePhaseDots(activePhase) {
+  phaseDots.forEach((dot) => {
+    dot.classList.toggle('is-active', dot.dataset.phaseDot === activePhase);
+  });
+}
+
+function getEncouragement() {
+  if (remaining <= 10) return 'Encore 10 secondes. Propre jusqu’au bout.';
+  return encouragements[currentIndex % encouragements.length];
+}
+
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+  const secs = (seconds % 60).toString().padStart(2, '0');
+  return `${mins}:${secs}`;
+}
+
+function toggleReadyPause() {
+  if (awaitingReady || isPaused) {
+    awaitingReady = false;
+    isPaused = false;
+    readyButton.textContent = 'Pause';
+    encouragementText.textContent = currentState === 'prep'
+      ? 'C’est parti. On démarre doucement.'
+      : getEncouragement();
+    return;
+  }
+
+  isPaused = true;
+  readyButton.textContent = 'Prêt';
+  encouragementText.textContent = 'Pause. Respire, tu repars quand tu es prêt.';
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+}
+
+function skipCurrent() {
+  advance();
+}
+
+function showAdapt() {
+  isPaused = true;
+  awaitingReady = false;
+  readyButton.textContent = 'Prêt';
+  showScreen('adapt');
+}
+
+function switchToBrise() {
+  selectedMode = 'brise';
+  document.body.dataset.mode = selectedMode;
+  modeCards.forEach((item) => {
+    item.classList.toggle('is-selected', item.dataset.mode === selectedMode);
+  });
+  modePill.textContent = modes[selectedMode].label;
+  resumeFromAdapt();
+}
+
+function replaceWithBreathing() {
+  currentState = 'exercise';
+  remaining = 30;
+  awaitingReady = true;
+  currentAdaptation = {
+    title: 'Respiration douce',
+    phase: 'Adaptation',
+    animation: 'breathe',
+    cue: 'Respire lentement. On laisse le corps redescendre.',
+  };
+  resumeFromAdapt();
+}
+
+function resumeFromAdapt() {
+  isPaused = false;
+  readyButton.textContent = awaitingReady ? 'Prêt' : 'Pause';
+  showScreen('session');
+  render();
+}
+
+function finishSession() {
+  clearInterval(tickId);
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  progressFill.style.width = '100%';
+  finishMode.textContent = modes[selectedMode].label;
+  finishSteps.textContent = totalSteps;
+  updatePhaseDots('calm');
+  showScreen('finish');
+}
+
+function goHome() {
+  clearInterval(tickId);
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  isPaused = false;
+  awaitingReady = true;
+  showScreen('home');
+}
+
+if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js');
+  });
+}

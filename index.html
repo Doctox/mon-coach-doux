@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#314c3d" />
+    <title>Mon Coach Doux</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="screen screen-home is-active" id="homeScreen">
+        <div class="brand-block">
+          <p class="kicker">Routine quotidienne - 30 min</p>
+          <h1>Mon Coach Doux</h1>
+          <p class="intro">
+            Choisis ton énergie du jour. Je t'accompagne exercice après exercice,
+            sans pression et sans te laisser seul.
+          </p>
+        </div>
+
+        <div class="mode-grid" aria-label="Choix du mode">
+          <button class="mode-card is-selected" data-mode="brise">
+            <span class="mode-name">Brise</span>
+            <span class="mode-note">Bouger sans forcer</span>
+          </button>
+          <button class="mode-card" data-mode="doux">
+            <span class="mode-name">Doux</span>
+            <span class="mode-note">La routine normale</span>
+          </button>
+          <button class="mode-card" data-mode="sombre">
+            <span class="mode-name">Sombre</span>
+            <span class="mode-note">Plus engagé, toujours propre</span>
+          </button>
+        </div>
+
+        <div class="session-summary" aria-label="Déroulé de la séance">
+          <div class="summary-item">
+            <strong>5 min</strong>
+            <span>Échauffement</span>
+          </div>
+          <div class="summary-item">
+            <strong>18 min</strong>
+            <span>Renforcement</span>
+          </div>
+          <div class="summary-item">
+            <strong>5 min</strong>
+            <span>Mobilité</span>
+          </div>
+          <div class="summary-item">
+            <strong>2 min</strong>
+            <span>Retour calme</span>
+          </div>
+        </div>
+
+        <button class="primary-action" id="startButton">Démarrer la séance</button>
+      </section>
+
+      <section class="screen screen-session" id="sessionScreen">
+        <header class="session-top">
+          <button class="icon-button" id="backButton" aria-label="Retour à l'accueil">←</button>
+          <div>
+            <p class="session-label" id="phaseLabel">Préparation</p>
+            <h2 id="exerciseTitle">On s'installe</h2>
+            <p class="step-count" id="stepCount">Préparation</p>
+          </div>
+          <div class="mode-pill" id="modePill">Brise</div>
+        </header>
+
+        <div class="progress-track" aria-label="Progression de la séance">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="phase-dots" aria-label="Phase en cours">
+          <span class="phase-dot is-active" data-phase-dot="warmup">Échauffement</span>
+          <span class="phase-dot" data-phase-dot="circuit">Circuit</span>
+          <span class="phase-dot" data-phase-dot="mobility">Mobilité</span>
+          <span class="phase-dot" data-phase-dot="calm">Calme</span>
+        </div>
+
+        <section class="coach-panel">
+          <div class="movement-panel">
+            <div class="animation-stage" id="animationStage" aria-label="Animation de l'exercice">
+              <div class="figure">
+                <div class="body-root">
+                  <span class="head"></span>
+                  <span class="torso"></span>
+                  <div class="limb arm arm-left">
+                    <span class="upper-arm"></span>
+                    <span class="joint elbow"></span>
+                    <span class="forearm"></span>
+                    <span class="hand"></span>
+                  </div>
+                  <div class="limb arm arm-right">
+                    <span class="upper-arm"></span>
+                    <span class="joint elbow"></span>
+                    <span class="forearm"></span>
+                    <span class="hand"></span>
+                  </div>
+                  <div class="limb leg leg-left">
+                    <span class="thigh"></span>
+                    <span class="joint knee"></span>
+                    <span class="shin"></span>
+                    <span class="foot"></span>
+                  </div>
+                  <div class="limb leg leg-right">
+                    <span class="thigh"></span>
+                    <span class="joint knee"></span>
+                    <span class="shin"></span>
+                    <span class="foot"></span>
+                  </div>
+                </div>
+                <span class="mat-line"></span>
+              </div>
+            </div>
+            <p class="cue" id="cueText">Installe-toi. On commence dans quelques secondes.</p>
+          </div>
+
+          <div class="timer-block">
+            <div class="timer" id="timerText">00:03</div>
+            <p class="encouragement" id="encouragementText">Tranquille. Tu n'as qu'à suivre.</p>
+            <button class="voice-toggle is-on" id="voiceToggle" aria-pressed="true">Voix activée</button>
+            <button class="ready-action" id="readyButton">Prêt</button>
+          </div>
+        </section>
+
+        <div class="next-panel">
+          <span>Prochain</span>
+          <strong id="nextText">Respiration debout</strong>
+        </div>
+
+        <nav class="controls" aria-label="Contrôles de séance">
+          <button class="secondary-action" id="skipButton">Passer</button>
+          <button class="pain-action" id="painButton">Trop dur / douleur</button>
+        </nav>
+      </section>
+
+      <section class="screen screen-adapt" id="adaptScreen">
+        <h2>On adapte.</h2>
+        <p>
+          Le but, c'est de construire une habitude durable. Choisis ce qui te
+          semble le plus juste maintenant.
+        </p>
+        <div class="adapt-actions">
+          <button id="switchBriseButton">Passer en Brise</button>
+          <button id="replaceButton">Remplacer par respiration</button>
+          <button id="stopButton">Arrêter la séance</button>
+          <button id="resumeFromAdaptButton">Reprendre doucement</button>
+        </div>
+      </section>
+
+      <section class="screen screen-finish" id="finishScreen">
+        <p class="kicker">Séance terminée</p>
+        <h2>Bien joué.</h2>
+        <div class="finish-stats">
+          <div>
+            <strong id="finishMode">Brise</strong>
+            <span>mode du jour</span>
+          </div>
+          <div>
+            <strong id="finishSteps">18</strong>
+            <span>étapes guidées</span>
+          </div>
+        </div>
+        <p id="finishText">
+          Tu as pris soin de ton corps aujourd'hui. Petite victoire, vraie avancée.
+        </p>
+        <button class="primary-action" id="restartButton">Revenir demain</button>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

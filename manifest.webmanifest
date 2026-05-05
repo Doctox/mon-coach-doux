@@ -1,0 +1,19 @@
+{
+  "name": "Mon Coach Doux",
+  "short_name": "Coach Doux",
+  "description": "Une séance quotidienne guidée, douce et répétable pour entretenir son corps.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f4ee",
+  "theme_color": "#314c3d",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
