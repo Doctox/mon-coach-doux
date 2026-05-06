@@ -1,20 +1,20 @@
 const modes = {
   brise: {
     label: 'Brise',
-    effort: 35,
-    rest: 25,
+    effort: 30,
+    rest: 22,
     intro: 'Aujourd’hui, le but c’est juste d’être là.',
   },
   doux: {
     label: 'Doux',
-    effort: 45,
-    rest: 20,
+    effort: 40,
+    rest: 13,
     intro: 'Garde le rythme. Propre plutôt que rapide.',
   },
   sombre: {
     label: 'Sombre',
-    effort: 50,
-    rest: 15,
+    effort: 45,
+    rest: 8,
     intro: 'Reste solide. Lent, propre, contrôlé.',
   },
 };
@@ -23,27 +23,17 @@ const exercises = [
   {
     title: 'Respiration debout',
     phase: 'Échauffement',
-    duration: 60,
+    duration: 45,
   },
   {
     title: 'Cercles d’épaules',
     phase: 'Échauffement',
-    duration: 60,
-  },
-  {
-    title: 'Cat-cow doux',
-    phase: 'Échauffement',
-    duration: 60,
-  },
-  {
-    title: 'Ouverture de hanches',
-    phase: 'Échauffement',
-    duration: 60,
+    duration: 45,
   },
   {
     title: 'Marche active',
     phase: 'Échauffement',
-    duration: 60,
+    duration: 45,
   },
   {
     title: 'Squat contrôlé',
@@ -108,17 +98,17 @@ const exercises = [
   {
     title: 'Mobilité hanches',
     phase: 'Mobilité',
-    duration: 60,
+    duration: 45,
   },
   {
     title: 'Rotation thoracique',
     phase: 'Mobilité',
-    duration: 60,
+    duration: 45,
   },
   {
     title: 'Posture de repos',
     phase: 'Retour au calme',
-    duration: 60,
+    duration: 45,
   },
 ];
 
@@ -225,9 +215,136 @@ const exerciseGuides = {
   },
 };
 
+const tempoPlans = {
+  'Respiration debout': {
+    label: 'Respiration',
+    sequence: [
+      { action: 'Inspire', duration: 4 },
+      { action: 'Retiens', duration: 7 },
+      { action: 'Expire', duration: 8 },
+    ],
+    hint: 'Inspire 4 secondes - retiens 7 secondes - expire 8 secondes',
+  },
+  'Cercles d’épaules': {
+    label: 'Épaules',
+    sequence: [
+      { action: 'Monte', duration: 2 },
+      { action: 'Recule', duration: 2 },
+      { action: 'Descends', duration: 2 },
+      { action: 'Avance', duration: 2 },
+    ],
+    hint: 'Roule doucement les épaules, grand cercle, nuque relâchée',
+  },
+  'Marche active': {
+    label: 'Marche',
+    sequence: [
+      { action: 'Gauche', duration: 1 },
+      { action: 'Droite', duration: 1 },
+      { action: 'Respire', duration: 2 },
+    ],
+    hint: 'Marche souple, bras opposé à la jambe, impact très léger',
+  },
+  'Squat contrôlé': {
+    label: 'Squat',
+    sequence: [
+      { action: 'Descends', duration: 4 },
+      { action: 'Tiens', duration: 2 },
+      { action: 'Remonte', duration: 1 },
+    ],
+    hint: 'Tempo 4/2/1 : descente lente, petite tenue, remontée propre',
+  },
+  'Pompes adaptées': {
+    label: 'Pompe',
+    sequence: [
+      { action: 'Descends', duration: 4 },
+      { action: 'Tiens', duration: 2 },
+      { action: 'Repousse', duration: 1 },
+    ],
+    hint: 'Tempo 4/2/1 : descends sans t’écraser, tiens, repousse',
+  },
+  'Pont fessier': {
+    label: 'Pont fessier',
+    sequence: [
+      { action: 'Monte', duration: 2 },
+      { action: 'Serre', duration: 2 },
+      { action: 'Redescends', duration: 3 },
+    ],
+    hint: 'Monte en expirant, serre les fessiers, redescends lentement',
+  },
+  'Bird-dog': {
+    label: 'Stabilité',
+    sequence: [
+      { action: 'Tends', duration: 2 },
+      { action: 'Tiens', duration: 3 },
+      { action: 'Reviens', duration: 2 },
+      { action: 'Change', duration: 1 },
+    ],
+    hint: 'Tends bras et jambe opposés, bassin stable, reviens sans vriller',
+  },
+  'Dead bug': {
+    label: 'Gainage doux',
+    sequence: [
+      { action: 'Descends', duration: 3 },
+      { action: 'Tiens', duration: 2 },
+      { action: 'Reviens', duration: 2 },
+      { action: 'Change', duration: 1 },
+    ],
+    hint: 'Descends lentement, bas du dos stable, reviens puis change',
+  },
+  'Nageur au sol': {
+    label: 'Nageur',
+    sequence: [
+      { action: 'Lève', duration: 2 },
+      { action: 'Tiens', duration: 2 },
+      { action: 'Repose', duration: 2 },
+      { action: 'Change', duration: 1 },
+    ],
+    hint: 'Petit mouvement, cherche la longueur, pas la hauteur',
+  },
+  'Mobilité hanches': {
+    label: 'Hanches',
+    sequence: [
+      { action: 'Ouvre', duration: 3 },
+      { action: 'Respire', duration: 2 },
+      { action: 'Reviens', duration: 2 },
+      { action: 'Change', duration: 1 },
+    ],
+    hint: 'Amplitude confortable, bassin stable, aucun à-coup',
+  },
+  'Rotation thoracique': {
+    label: 'Rotation',
+    sequence: [
+      { action: 'Tourne', duration: 3 },
+      { action: 'Expire', duration: 2 },
+      { action: 'Reviens', duration: 2 },
+      { action: 'Change', duration: 1 },
+    ],
+    hint: 'Tourne le haut du dos, pas le bas du dos, puis change de côté',
+  },
+  'Posture de repos': {
+    label: 'Calme',
+    sequence: [
+      { action: 'Inspire', duration: 4 },
+      { action: 'Retiens', duration: 7 },
+      { action: 'Expire', duration: 8 },
+    ],
+    hint: 'Inspire 4 secondes - retiens 7 secondes - expire 8 secondes',
+  },
+  'Respiration douce': {
+    label: 'Respiration',
+    sequence: [
+      { action: 'Inspire', duration: 4 },
+      { action: 'Retiens', duration: 7 },
+      { action: 'Expire', duration: 8 },
+    ],
+    hint: 'Inspire 4 secondes - retiens 7 secondes - expire 8 secondes',
+  },
+};
+
 let selectedMode = 'brise';
 let currentIndex = -1;
 let remaining = 3;
+let currentDuration = 3;
 let currentState = 'prep';
 let isPaused = false;
 let awaitingReady = true;
@@ -257,12 +374,18 @@ const stopButton = document.querySelector('#stopButton');
 const resumeFromAdaptButton = document.querySelector('#resumeFromAdaptButton');
 const restartButton = document.querySelector('#restartButton');
 const voiceToggle = document.querySelector('#voiceToggle');
+const infoButton = document.querySelector('#infoButton');
+const infoBubble = document.querySelector('#infoBubble');
 
 const phaseLabel = document.querySelector('#phaseLabel');
 const exerciseTitle = document.querySelector('#exerciseTitle');
 const modePill = document.querySelector('#modePill');
 const progressFill = document.querySelector('#progressFill');
 const timerText = document.querySelector('#timerText');
+const tempoBox = document.querySelector('#tempoBox');
+const tempoLabel = document.querySelector('#tempoLabel');
+const tempoCount = document.querySelector('#tempoCount');
+const tempoHint = document.querySelector('#tempoHint');
 const setupText = document.querySelector('#setupText');
 const movementText = document.querySelector('#movementText');
 const breathText = document.querySelector('#breathText');
@@ -296,6 +419,7 @@ stopButton.addEventListener('click', finishSession);
 resumeFromAdaptButton.addEventListener('click', resumeFromAdapt);
 restartButton.addEventListener('click', goHome);
 voiceToggle.addEventListener('click', toggleVoice);
+infoButton.addEventListener('click', toggleInfoBubble);
 
 setupVoice();
 
@@ -306,7 +430,7 @@ function showScreen(name) {
 
 function startSession() {
   currentIndex = -1;
-  remaining = 3;
+  setTimer(3);
   currentState = 'prep';
   isPaused = false;
   awaitingReady = true;
@@ -318,6 +442,11 @@ function startSession() {
   renderPrep();
   speak('Installe-toi. La séance va commencer. Je te guide étape par étape.', 'prep');
   startTicking();
+}
+
+function setTimer(seconds) {
+  remaining = seconds;
+  currentDuration = seconds;
 }
 
 function startTicking() {
@@ -334,6 +463,8 @@ function startTicking() {
 }
 
 function advance() {
+  closeInfoBubble();
+
   if (currentState === 'prep' || currentState === 'rest') {
     currentIndex += 1;
     currentAdaptation = null;
@@ -342,7 +473,7 @@ function advance() {
       return;
     }
     currentState = 'exercise';
-    remaining = getExerciseDuration(exercises[currentIndex]);
+    setTimer(getExerciseDuration(exercises[currentIndex]));
     awaitingReady = shouldWaitForReady(exercises[currentIndex]);
   } else {
     const hasNext = currentIndex < exercises.length - 1;
@@ -352,13 +483,13 @@ function advance() {
     }
     if (needsRestAfter(exercises[currentIndex])) {
       currentState = 'rest';
-      remaining = modes[selectedMode].rest;
+      setTimer(modes[selectedMode].rest);
       awaitingReady = false;
     } else {
       currentIndex += 1;
       currentAdaptation = null;
       currentState = 'exercise';
-      remaining = getExerciseDuration(exercises[currentIndex]);
+      setTimer(getExerciseDuration(exercises[currentIndex]));
       awaitingReady = shouldWaitForReady(exercises[currentIndex]);
     }
   }
@@ -366,11 +497,25 @@ function advance() {
   render();
 }
 
+function toggleInfoBubble() {
+  const isOpen = !infoBubble.hidden;
+  infoBubble.hidden = isOpen;
+  infoButton.classList.toggle('is-open', !isOpen);
+  infoButton.setAttribute('aria-expanded', String(!isOpen));
+}
+
+function closeInfoBubble() {
+  infoBubble.hidden = true;
+  infoButton.classList.remove('is-open');
+  infoButton.setAttribute('aria-expanded', 'false');
+}
+
 function renderPrep() {
   phaseLabel.textContent = 'Préparation';
   exerciseTitle.textContent = 'On s’installe';
   stepCount.textContent = 'Préparation';
   timerText.textContent = formatTime(remaining);
+  updateTempo(null);
   encouragementText.textContent = modes[selectedMode].intro;
   readyButton.textContent = awaitingReady || isPaused ? 'Prêt' : 'Pause';
   nextText.textContent = exercises[0].title;
@@ -395,6 +540,7 @@ function render() {
     phaseLabel.textContent = 'Repos guidé';
     exerciseTitle.textContent = 'Respire';
     encouragementText.textContent = 'Relâche les épaules. Tu repars dans quelques secondes.';
+    updateTempo(null);
     nextText.textContent = next ? next.title : 'Fin de séance';
     readyButton.textContent = isPaused ? 'Prêt' : 'Pause';
     stepCount.textContent = `Repos - étape ${Math.min(currentIndex + 2, totalSteps)}/${totalSteps}`;
@@ -408,6 +554,7 @@ function render() {
     phaseLabel.textContent = exercise.phase;
     exerciseTitle.textContent = exercise.title;
     encouragementText.textContent = getEncouragement();
+    updateTempo(exercise);
     nextText.textContent = exercises[currentIndex + 1]?.title ?? 'Fin de séance';
     stepCount.textContent = `Étape ${currentIndex + 1}/${totalSteps}`;
     updatePhaseDots(getPhaseKey(exercise.phase));
@@ -426,6 +573,56 @@ function renderGuide(exercise) {
   movementText.textContent = guide.movement;
   breathText.textContent = guide.breath;
   watchText.textContent = guide.watch;
+}
+
+function updateTempo(exercise) {
+  if (currentState === 'rest') {
+    tempoBox.classList.remove('is-tempo');
+    tempoLabel.textContent = 'Repos';
+    tempoCount.textContent = '-';
+    tempoHint.textContent = 'Le repos part tout seul. Relâche et respire.';
+    return;
+  }
+
+  const plan = exercise && currentState === 'exercise' ? tempoPlans[exercise.title] : null;
+
+  if (!plan) {
+    tempoBox.classList.remove('is-tempo');
+    tempoLabel.textContent = 'Rythme libre';
+    tempoCount.textContent = '-';
+    tempoHint.textContent = 'Mouvement doux, sans chercher la vitesse.';
+    return;
+  }
+
+  const elapsed = Math.max(0, currentDuration - remaining);
+
+  if (plan.sequence) {
+    const total = plan.sequence.reduce((sum, step) => sum + step.duration, 0);
+    let cursor = elapsed % total;
+    let activeStep = plan.sequence[0];
+
+    for (const step of plan.sequence) {
+      if (cursor < step.duration) {
+        activeStep = step;
+        break;
+      }
+      cursor -= step.duration;
+    }
+
+    tempoBox.classList.add('is-tempo');
+    tempoLabel.textContent = `${plan.label} - ${activeStep.action}`;
+    tempoCount.textContent = activeStep.duration - cursor;
+    tempoHint.textContent = plan.hint;
+    return;
+  }
+
+  const count = plan.count - (elapsed % plan.count);
+  const action = plan.steps[count] || plan.label;
+
+  tempoBox.classList.add('is-tempo');
+  tempoLabel.textContent = `${plan.label} - ${action}`;
+  tempoCount.textContent = count;
+  tempoHint.textContent = plan.hint;
 }
 
 function getGuide(exercise) {
@@ -494,7 +691,28 @@ function toggleVoice() {
 }
 
 function getExerciseDuration(exercise) {
-  return exercise.duration === 'effort' ? modes[selectedMode].effort : exercise.duration;
+  const baseDuration = exercise.duration === 'effort' ? modes[selectedMode].effort : exercise.duration;
+  return syncDurationToTempo(exercise.title, baseDuration);
+}
+
+function syncDurationToTempo(title, baseDuration) {
+  const cycleDuration = getTempoCycleDuration(title);
+
+  if (!cycleDuration) return baseDuration;
+
+  const cycleCount = Math.max(1, Math.round(baseDuration / cycleDuration));
+  return cycleCount * cycleDuration;
+}
+
+function getTempoCycleDuration(title) {
+  const plan = tempoPlans[title];
+
+  if (!plan) return 0;
+  if (plan.sequence) {
+    return plan.sequence.reduce((sum, step) => sum + step.duration, 0);
+  }
+
+  return plan.count || 0;
 }
 
 function needsRestAfter(exercise) {
@@ -569,7 +787,7 @@ function switchToBrise() {
 
 function replaceWithBreathing() {
   currentState = 'exercise';
-  remaining = 30;
+  setTimer(syncDurationToTempo('Respiration douce', 30));
   awaitingReady = true;
   currentAdaptation = {
     title: 'Respiration douce',

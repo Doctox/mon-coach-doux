@@ -275,23 +275,11 @@ h2 {
 }
 
 .coach-panel {
-  display: grid;
-  grid-template-columns: minmax(340px, 1.12fr) minmax(260px, 0.82fr);
-  gap: 22px;
-  align-items: stretch;
-}
-
-.movement-panel {
-  min-width: 0;
+  display: block;
 }
 
 .exercise-guide {
-  min-height: 340px;
-  padding: 22px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.66);
-  box-shadow: var(--shadow);
+  min-height: 0;
 }
 
 .guide-card span {
@@ -305,16 +293,13 @@ h2 {
 .guide-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 18px;
+  gap: 10px 14px;
 }
 
 .guide-card {
-  min-height: 132px;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(247, 244, 238, 0.62);
+  min-height: auto;
+  padding: 2px 0 10px;
+  border-bottom: 1px solid rgba(221, 214, 202, 0.9);
 }
 
 .guide-card p {
@@ -325,7 +310,7 @@ h2 {
 
 .timer-block {
   min-width: 0;
-  min-height: 340px;
+  min-height: 430px;
   padding: 28px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -336,15 +321,95 @@ h2 {
   justify-content: center;
 }
 
+.timer-head {
+  display: grid;
+  grid-template-columns: 1fr 46px;
+  gap: 12px;
+  align-items: center;
+}
+
 .timer {
   max-width: 100%;
-  transform: translateX(-16px);
-  font-size: clamp(3.8rem, 10vw, 7.4rem);
+  transform: none;
+  color: var(--muted);
+  font-size: clamp(2.25rem, 5vw, 3.8rem);
   font-weight: 900;
   line-height: 1;
   font-variant-numeric: tabular-nums;
   overflow-wrap: normal;
   white-space: nowrap;
+  text-align: center;
+}
+
+.info-button {
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--mode);
+  background: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.info-button.is-open {
+  color: var(--white);
+  border-color: var(--mode);
+  background: var(--mode);
+}
+
+.info-bubble {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.info-bubble[hidden] {
+  display: none;
+}
+
+.tempo-box {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  align-items: center;
+  margin-top: 14px;
+  padding: 18px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(247, 244, 238, 0.72);
+  text-align: center;
+}
+
+.tempo-box span {
+  color: var(--mode);
+  font-size: 0.86rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.tempo-box strong {
+  justify-self: center;
+  color: var(--mode);
+  font-size: clamp(4.2rem, 10vw, 6.6rem);
+  font-weight: 900;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.tempo-box small {
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.tempo-box.is-tempo {
+  border-color: var(--mode);
+  background: var(--mode-soft);
 }
 
 .encouragement {
@@ -475,7 +540,6 @@ h2 {
 
   .mode-grid,
   .session-summary,
-  .coach-panel,
   .controls,
   .adapt-actions {
     grid-template-columns: 1fr;
@@ -490,13 +554,12 @@ h2 {
     justify-self: start;
   }
 
-  .exercise-guide,
   .timer-block {
     min-height: 260px;
   }
 
   .timer {
-    font-size: clamp(3.3rem, 18vw, 5.4rem);
+    font-size: clamp(2.25rem, 12vw, 3.6rem);
   }
 
   .phase-dots {
@@ -626,16 +689,38 @@ h2 {
   }
 
   .timer-block {
-    order: -1;
     min-height: auto;
     padding: 18px 18px 16px;
     justify-content: start;
   }
 
+  .timer-head {
+    grid-template-columns: 1fr 42px;
+    gap: 8px;
+  }
+
+  .info-button {
+    width: 42px;
+    height: 42px;
+  }
+
   .timer {
-    transform: translateX(-8px);
-    font-size: clamp(4.4rem, 24vw, 6.2rem);
+    transform: none;
+    font-size: clamp(2.25rem, 12vw, 3.4rem);
     text-align: center;
+  }
+
+  .tempo-box {
+    margin-top: 10px;
+    padding: 14px 12px;
+  }
+
+  .tempo-box strong {
+    font-size: clamp(4.8rem, 27vw, 7rem);
+  }
+
+  .tempo-box small {
+    font-size: 0.78rem;
   }
 
   .encouragement {
@@ -653,11 +738,6 @@ h2 {
     margin-top: 10px;
   }
 
-  .exercise-guide {
-    min-height: auto;
-    padding: 14px;
-  }
-
   .guide-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
@@ -665,8 +745,7 @@ h2 {
   }
 
   .guide-card {
-    min-height: 138px;
-    padding: 12px;
+    padding: 2px 0 8px;
   }
 
   .guide-card span {
